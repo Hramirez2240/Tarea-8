@@ -133,7 +133,7 @@ using System.Linq;
             //group p by p.signo_zodiaco into g
         select new DataConsultaVacunados
         {
-            nombre = p.Nombre,
+            nombre = " ID: "+p.Id+" "+p.Nombre+" "+ p.Apellido+" ,Telefono: "+p.Telefono+" ,Vacuna aplicada: "+p.Vacuna_recibida,
             lat = p.Lat,
             lon = p.Lon
         }
