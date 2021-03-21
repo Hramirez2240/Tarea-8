@@ -6,42 +6,133 @@
 <div class="container">
     <br> <br>
 
+    <div class="form-inline">
+        <label for="nombre">Filtrar:</label>
+        <input type="text" class="form-control" @bind="filtroText" placeholder="Nombre o Apellido">
+    </div>
+    <br>
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>C�dula</th>
-                <th>Nombre</th>
-                <th>Apellido</th>
-                <th>Tel�fono</th>
-                <th>Vacuna recibida</th>
-                <th>Provincia</th>
-                <th>Primera dosis</th>
-                <th>Segunda dosis</th>
-                <th>Signo zodiaco</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (Vacunados vacu in GetVacunados())
-            {
+    
+    @if (@filtroText != ""){  
+
+        @if (GetFiltro().Count() == 0)
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>C�dula</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Tel�fono</th>
+                        <th>Vacuna recibida</th>
+                        <th>Provincia</th>
+                        <th>Primera dosis</th>
+                        <th>Segunda dosis</th>
+                        <th>Signo zodiaco</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Vacunados vacu in GetFiltroApellido())
+                    {
+                        <tr>
+                            <td>@vacu.Id</td>
+                            <td>@vacu.Cedula</td>
+                            <td>@vacu.Nombre</td>
+                            <td>@vacu.Apellido</td>
+                            <td>@vacu.Telefono</td>
+                            <td>@vacu.Vacuna_recibida</td>
+                            <td>@vacu.Provincia</td>
+                            <td>@vacu.Fecha_Dosis1</td>
+                            <td>@vacu.Fecha_Dosis2</td>
+                            <td>@vacu.signo_zodiaco</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        }else{
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>C�dula</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Tel�fono</th>
+                        <th>Vacuna recibida</th>
+                        <th>Provincia</th>
+                        <th>Primera dosis</th>
+                        <th>Segunda dosis</th>
+                        <th>Signo zodiaco</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Vacunados vacu in GetFiltro())
+                    {
+                        <tr>
+                            <td>@vacu.Id</td>
+                            <td>@vacu.Cedula</td>
+                            <td>@vacu.Nombre</td>
+                            <td>@vacu.Apellido</td>
+                            <td>@vacu.Telefono</td>
+                            <td>@vacu.Vacuna_recibida</td>
+                            <td>@vacu.Provincia</td>
+                            <td>@vacu.Fecha_Dosis1</td>
+                            <td>@vacu.Fecha_Dosis2</td>
+                            <td>@vacu.signo_zodiaco</td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+        }
+        
+        
+    }else{
+        <table class="table table-bordered">
+            <thead>
                 <tr>
-                    <td>@vacu.Id</td>
-                    <td>@vacu.Cedula</td>
-                    <td>@vacu.Nombre</td>
-                    <td>@vacu.Apellido</td>
-                    <td>@vacu.Telefono</td>
-                    <td>@vacu.Vacuna_recibida</td>
-                    <td>@vacu.Provincia</td>
-                    <td>@vacu.Fecha_Dosis1</td>
-                    <td>@vacu.Fecha_Dosis2</td>
-                    <td>@vacu.signo_zodiaco</td>
+                    <th>Id</th>
+                    <th>C�dula</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Tel�fono</th>
+                    <th>Vacuna recibida</th>
+                    <th>Provincia</th>
+                    <th>Primera dosis</th>
+                    <th>Segunda dosis</th>
+                    <th>Signo zodiaco</th>
                 </tr>
-            }
+            </thead>
+            <tbody>
+                @foreach (Vacunados vacu in GetVacunados())
+                {
+                    <tr>
+                        <td>@vacu.Id</td>
+                        <td>@vacu.Cedula</td>
+                        <td>@vacu.Nombre</td>
+                        <td>@vacu.Apellido</td>
+                        <td>@vacu.Telefono</td>
+                        <td>@vacu.Vacuna_recibida</td>
+                        <td>@vacu.Provincia</td>
+                        <td>@vacu.Fecha_Dosis1</td>
+                        <td>@vacu.Fecha_Dosis2</td>
+                        <td>@vacu.signo_zodiaco</td>
+                    </tr>
+                }
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
+    }
+
+
+
+    
 </div>
 @code{
+    string filtroText =string.Empty;
     List<Vacunados> GetVacunados() => new Contexto().Vacunadas.ToList();
+    List<Vacunados> GetFiltro() => new Contexto().Vacunadas.Where(x => x.Nombre.Contains(filtroText)).ToList();
+    List<Vacunados> GetFiltroApellido() => new Contexto().Vacunadas.Where(x => x.Apellido.Contains(filtroText)).ToList();
 }

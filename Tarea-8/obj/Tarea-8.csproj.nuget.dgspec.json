@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ramirez Rodriguez\\Desktop\\Héctor\\Itla\\Materias\\Programación III\\Tarea-8\\Tarea-8\\Tarea-8.csproj": {}
+    "C:\\2021\\Tarea-8\\Tarea-8\\Tarea-8.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ramirez Rodriguez\\Desktop\\Héctor\\Itla\\Materias\\Programación III\\Tarea-8\\Tarea-8\\Tarea-8.csproj": {
+    "C:\\2021\\Tarea-8\\Tarea-8\\Tarea-8.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ramirez Rodriguez\\Desktop\\Héctor\\Itla\\Materias\\Programación III\\Tarea-8\\Tarea-8\\Tarea-8.csproj",
+        "projectUniqueName": "C:\\2021\\Tarea-8\\Tarea-8\\Tarea-8.csproj",
         "projectName": "Tarea-8",
-        "projectPath": "C:\\Users\\Ramirez Rodriguez\\Desktop\\Héctor\\Itla\\Materias\\Programación III\\Tarea-8\\Tarea-8\\Tarea-8.csproj",
-        "packagesPath": "C:\\Users\\Ramirez Rodriguez\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ramirez Rodriguez\\Desktop\\Héctor\\Itla\\Materias\\Programación III\\Tarea-8\\Tarea-8\\obj\\",
+        "projectPath": "C:\\2021\\Tarea-8\\Tarea-8\\Tarea-8.csproj",
+        "packagesPath": "C:\\Users\\Andriel Castillo\\.nuget\\packages\\",
+        "outputPath": "C:\\2021\\Tarea-8\\Tarea-8\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Ramirez Rodriguez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Andriel Castillo\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
