@@ -1,0 +1,183 @@
+@page "/Inventario-Vacuna"
+@using Microsoft.AspNetCore.Components;
+@inject HttpClient Http;
+@using System.Net.Http;
+@using Tarea_8.Modelos;
+
+
+@* Definiendo botones y estilo de la aplicación *@
+<h1 style=" text-align: center; color: white; height: 65px" class="mt-2 col-md-12 full-width">Inventario de Vacunas en el Almacen</h1>
+<div class="container">
+
+    <br>
+
+    <input style="width: 50%;" type="text" class="form-control" @bind-value="marca" placeholder="Digite la marca de la Vacuna">
+    <br>
+    <input style="width: 50%; text-align: left;" type="text" class="form-control" @bind-value="cantidad" placeholder="Digite la cantidad de Vacunas">
+    <br>
+    <br>
+    <input style="width: 50%; text-align: left;" type="text" class="form-control" @bind-value="id" placeholder="Digite el id">
+    <br>
+    <button class="btn btn-primary" @onclick="ValdiarDatos">Subir vacunas al Inventario</button>
+    <br>
+    <br>
+    <button class="btn btn-warning" @onclick="Actualizar">Actualzar</button>
+    <br>
+    <br>
+
+
+    @if (@valor == 5)
+    {
+        <div class="alert alert-success" role="alert">Procesado sastifactoria mente</div>
+    }
+    else if (@valor == 2)
+    {
+        <div class="alert alert-danger" role="alert">Favor de ingresar dato. en el campo Cantidad</div>
+    }
+    else if (@valor == 1)
+    {
+        <div class="alert alert-danger" role="alert">Favor de ingresar dato. en el campo de la marca</div>
+    }
+    else if (@valor == 3)
+    {
+        <div class="alert alert-danger" role="alert">Favor de ingresar dato. en el campo de id</div>
+    }
+    else if (@valor == 8)
+    {
+        <div class="alert alert-success" role="alert">Procesado sastifactoria mente</div>
+    }
+
+</div>
+
+<br>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Marca</th>
+                    <th>Cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (inventario vcc in Getvacuna())
+                {
+                    <tr>
+                        <td>@vcc.id</td>
+                        <td>@vcc.marca</td>
+                        <td>@vcc.cantidad</td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-4"></div>
+</div>
+
+
+@code{
+
+    @* Creando los campos que almacenarán los datos *@
+    string marca = "";
+    string cantidad = "";
+    int valor = 0;
+    int numeroCantidad = 0;
+    string id;
+
+    @* Metodo que validad que los campos esten llenos *@
+    public void ValdiarDatos()
+    {
+
+        if (marca.Length > 0)
+        {
+            if (cantidad.Length > 0)
+            {
+                numeroCantidad = Int32.Parse(cantidad);
+                agregarDatos(marca, numeroCantidad);
+
+            }
+            else
+            {
+                valor = 2;
+            }
+        }
+        else
+        {
+            valor = 1;
+        }
+    }
+
+
+    @* Metodo Actualizar un dato de la base de dato en espesifico *@
+    public void Actualizar()
+    {
+
+        if (marca.Length > 0)
+        {
+            if (cantidad.Length > 0)
+            {
+                if (int.Parse(id) > 0)
+                {
+                    numeroCantidad = Int32.Parse(cantidad);
+                    var editarInfr = new inventario();
+                    using (Contexto context = new Contexto())
+                    {
+
+
+                        editarInfr.id = int.Parse(id);
+                        editarInfr.marca = marca;
+                        editarInfr.cantidad = numeroCantidad;
+
+                        context.Inventarios.Attach(editarInfr);
+                        context.Entry(editarInfr).Property(x => x.cantidad).IsModified = true;
+                        context.Entry(editarInfr).Property(x => x.marca).IsModified = true;
+                        context.SaveChanges();
+                        valor = 8;
+                    }
+
+                }
+                else
+                {
+                    valor = 3;
+                }
+
+            }
+            else
+            {
+                valor = 2;
+            }
+        }
+        else
+        {
+            valor = 1;
+        }
+
+    }
+
+
+
+    List<inventario> Getvacuna() => new Contexto().Inventarios.ToList();
+
+    @* Metodo que sube a la base de datos la informacion sobre las vacunas *@
+    public void agregarDatos(String valor1, int valor2)
+    {
+        Modelos.inventario iv = new Modelos.inventario();
+
+        iv.marca = valor1;
+        iv.cantidad = valor2;
+        using (Contexto context = new Contexto())
+        {
+            context.Add(iv);
+            context.SaveChanges();
+            valor = 5;
+
+        }
+    }
+
+
+
+}

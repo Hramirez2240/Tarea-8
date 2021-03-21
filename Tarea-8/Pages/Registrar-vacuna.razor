@@ -1,0 +1,276 @@
+@page "/registrar_vacuna"
+@using System.Net.Http;
+@using Microsoft.AspNetCore.Components;
+@inject HttpClient Http;
+@using System.Collections.Generic
+@using Tarea_8.Modelos
+@using System.Linq
+
+<style>
+    #pa {
+        justify-content: center;
+    }
+</style>
+
+<div class="container">
+    <h1 style="text-align: center; color: white; height: 65px" class="mt-2 col-md-12 mb-1 pt-2">Registrar vacuna</h1>
+    <br> <br>
+    <div id="pa" class="row ml-auto">
+        <input style="width: 20%; text-align: left;" type="text" class="form-control" @bind-value="cedula" placeholder="Digite una cédula">
+        <br>
+        <button class="btn btn-dark mb-3 ml-2" @onclick="DatosPersona">Buscar Datos</button>
+        <br> <br>
+    </div>
+    <br />  <br />
+    <hr style="background-color: white" />
+</div>
+
+@if (cedula != "")
+{
+    @if (validar)
+    {
+
+<div class="container">
+    <label style="font-size: 20px;"><strong>Nombre: </strong> @nombre_registrado</label>
+    <br> <br />
+    <label style="font-size: 20px;"><strong>Apellido: </strong> @apellido_registrado</label>
+    <br> <br />
+    <label style="font-size: 20px;"><strong>Fecha de nacimiento: </strong> @fecha_nacimiento_registrado</label>
+    <br> <br />
+    <label style="font-size: 20px;"><strong>Signo Zodiaco: </strong> @signo_zodiaco_registrado</label>
+    <br> <br />
+    <label style="font-size: 20px;"><strong>Telefono: </strong> @telefono_registrado</label>
+    <br> <br />
+    <label style="font-size: 20px;"><strong>Id vacuna: </strong> @idvacuna_registrado</label>
+    <br> <br />
+    <label style="font-size: 20px;"><strong>Id provincia: </strong> @idprovincia_registrado</label>
+    <br> <br />
+    <label style="font-size: 20px;"><strong>Fecha dosis 1: </strong> @primeradosis_registrado</label>
+    <br /> <br />
+    <label style="font-size: 20px;"><strong>Latitud: </strong> @lat_registrado</label>
+    <br /> <br />
+    <label style="font-size: 20px;"><strong>Longitud: </strong> @lon_registrado</label>
+    <br /> <br />
+    <label style="font-size: 20px;"><strong>Fecha de la segunda dosis</strong></label>
+    <input style="width: 50%;" type="text" class="form-control" @bind-value="segundadosis">
+    <br /><br />
+    <button class="btn btn-dark" @onclick="AplicarDosis">Aplicar segunda dosis</button>
+    <br />
+    @if (mensaje == 1)
+    {
+        <div class="alert alert-success" role="alert">Segunda dosis aplicada</div>
+    }
+</div>
+    }
+
+    else
+    {
+
+        @* Definiendo botones y estilo de la aplicación *@
+<div class="container">
+    <label style="font-size: 20px;"><strong>Nombre: </strong> @nombre</label>
+    <br> <br />
+    <label style="font-size: 20px;"><strong>Apellido: </strong> @apellido</label>
+    <br> <br />
+    <label style="font-size: 20px;"><strong>Fecha de nacimiento: </strong> @fecha_nacimiento</label>
+    <br /> <br />
+    <label style="font-size: 20px;"><strong>Signo zodiaco:</strong> @signo_zodiaco</label>
+    <br> <br />
+    <input style="width: 50%;" type="text" class="form-control" @bind-value="telefono" placeholder="Digite un teléfono">
+    <br> <br>
+    <label style="font-size: 20px;"><strong>Selecciona una vacuna</strong></label>
+    <EditForm Model="vacunas">
+        <InputSelect @bind-Value="idvacuna" class="form-control" style="width: 50%;">
+            @foreach (var vacu in vacunas)
+                    {
+
+                <option style="color: black" value="@vacu.id">@vacu.marca</option>
+                    }
+        </InputSelect>
+    </EditForm>
+    <br /><br />
+    <label style="font-size: 20px;"><strong>Selecciona una provincia</strong></label>
+    <EditForm Model="provincias">
+        <InputSelect @bind-Value="idprovincia" class="form-control" style="width: 50%;">
+            @foreach (var pro in provincias)
+                    {
+
+                <option style="color: black" value="@pro.id">@pro.Provincia</option>
+                    }
+        </InputSelect>
+    </EditForm>
+    <br /><br />
+    <label style="font-size: 20px;"><strong>Fecha de la primera dosis</strong></label>
+    <input style="width: 50%;" type="text" class="form-control" @bind-value="primeradosis">
+    <br /><br />
+    <input style="width: 50%;" type="text" class="form-control" @bind-value="lat" placeholder="Digite la latitud">
+    <br /><br />
+    <input style="width: 50%;" type="text" class="form-control" @bind-value="lon" placeholder="Digite la longitud">
+    <br /><br />
+    <button class="btn btn-dark" @onclick="EnviarDatos">Enviar datos</button>
+    <br />
+    @if (mensaje == 1)
+    {
+        <div class="alert alert-success" role="alert">Datos subidos correctamente</div>
+    }
+</div>
+    }
+}
+
+
+@code{
+
+    @* Creando los campos que almacenarán los datos de persona no registrada*@
+    string cedula = "", nombre = "", apellido = "", telefono = "", fecha_nacimiento = "", signo_zodiaco = "", primeradosis = "", idvacuna = "", idprovincia = "", lat = "", lon = "";
+
+    @*Datos de persona registrada*@
+    string nombre_registrado = "", apellido_registrado = "", telefono_registrado = "", fecha_nacimiento_registrado = "", signo_zodiaco_registrado = "", primeradosis_registrado = "", idvacuna_registrado = "", idprovincia_registrado = "", lat_registrado = "", lon_registrado = "", segundadosis = "";
+
+    //Campo para validar entrada
+    bool validar;
+
+    //Campo para mostrar que se ha ingresado con exito la persona
+    int mensaje = 0;
+    @* Creando instancia de la clase que consume la Api *@
+Data.DatosCedula padron = new Data.DatosCedula();
+public List<inventario> GetInventarios() => new Contexto().Inventarios.ToList();
+public List<provincia> GetProvincias() => new Contexto().Provincias.ToList();
+public List<inventario> vacunas;
+public List<provincia> provincias;
+
+protected override void OnInitialized()
+{
+    vacunas = GetInventarios();
+    provincias = GetProvincias();
+}
+
+
+public void DatosPersona()
+{
+    //Validando si la persona ingresada está en la bd
+    using (Contexto context = new Contexto())
+    {
+        validar = context.Vacunadas.Any(ee => ee.Cedula == cedula);
+
+        if (validar)
+        {
+            Vacunados va = context.Vacunadas
+                        .Where(e => e.Cedula == cedula)
+                        .FirstOrDefault();
+
+            nombre_registrado = va.Nombre;
+            apellido_registrado = va.Apellido;
+            telefono_registrado = va.Telefono;
+            fecha_nacimiento_registrado = va.Fecha_nacimiento;
+            signo_zodiaco_registrado = va.signo_zodiaco;
+            primeradosis_registrado = va.Fecha_Dosis1;
+            idvacuna_registrado = va.Vacuna_recibida.ToString();
+            idprovincia_registrado = va.Provincia.ToString();
+            lat_registrado = va.Lat;
+            lon_registrado = va.Lon;
+        }
+
+        else
+        {
+            //Asignando los valores a las variables creadas anteriormente
+            var personaje = padron.Datos(cedula);
+            nombre = personaje.Nombres;
+            apellido = personaje.Apellido1 + " " + personaje.Apellido2;
+            fecha_nacimiento = Convert.ToDateTime(personaje.FechaNacimiento).ToString("MM/dd/yyyy");
+            int dia_zodiaco = int.Parse(Convert.ToDateTime(personaje.FechaNacimiento).ToString("dd"));
+            int mes_zodiaco = int.Parse(Convert.ToDateTime(personaje.FechaNacimiento).ToString("MM"));
+            signo_zodiaco = signo(dia_zodiaco, mes_zodiaco);
+        }
+    }
+}
+
+public void EnviarDatos()
+{
+    Modelos.Vacunados vacu = new Modelos.Vacunados();
+    vacu.Cedula = cedula;
+    vacu.Nombre = nombre;
+    vacu.Apellido = apellido;
+    vacu.Fecha_nacimiento = fecha_nacimiento;
+    vacu.Telefono = telefono;
+    vacu.signo_zodiaco = signo_zodiaco;
+    vacu.Vacuna_recibida = int.Parse(idvacuna);
+    vacu.Provincia = int.Parse(idprovincia);
+    vacu.Fecha_Dosis1 = primeradosis;
+    vacu.Lat = lat;
+    vacu.Lon = lon;
+    using (Contexto context = new Contexto())
+    {
+        var inventario = context.Inventarios.Find(int.Parse(idvacuna));
+        inventario.cantidad = inventario.cantidad - 1;
+        context.Add(vacu);
+        context.SaveChanges();
+    }
+
+    mensaje = 1;
+
+}
+
+public void AplicarDosis()
+{
+
+    using (Contexto context = new Contexto())
+    {
+        Vacunados va = context.Vacunadas
+                .Where(e => e.Cedula == cedula)
+                .FirstOrDefault();
+
+        var id = va.Id;
+        var vacunados = context.Vacunadas.Find(id);
+        vacunados.Fecha_Dosis2 = segundadosis;
+        var inventario = context.Inventarios.Find(int.Parse(idvacuna_registrado));
+        inventario.cantidad = inventario.cantidad - 1;
+
+        context.SaveChanges();
+    }
+
+    mensaje = 1;
+
+}
+
+public string signo(int dia, int mes)
+{
+    if ((dia >= 21 && mes == 3) || (dia <= 20 && mes == 4))
+        return "Aries";
+
+    if ((dia >= 24 && mes == 9) || (dia <= 23 && mes == 10))
+        return "Libra";
+
+    if ((dia >= 21 && mes == 4) || (dia <= 21 && mes == 5))
+        return "Tauro";
+
+    if ((dia >= 24 && mes == 10) || (dia <= 22 && mes == 11))
+        return "Escorpio";
+
+    if ((dia >= 22 && mes == 5) || (dia <= 21 && mes == 6))
+        return "Géminis";
+
+    if ((dia >= 23 && mes == 11) || (dia <= 21 && mes == 12))
+        return "Sagitario";
+
+    if ((dia >= 21 && mes == 6) || (dia <= 23 && mes == 7))
+        return "Cáncer";
+
+    if ((dia >= 22 && mes == 12) || (dia <= 20 && mes == 1))
+        return "Capricornio";
+
+    if ((dia >= 24 && mes == 7) || (dia <= 23 && mes == 8))
+        return "Leo";
+
+    if ((dia >= 21 && mes == 1) || (dia <= 19 && mes == 2))
+        return "Acuario";
+
+    if ((dia >= 24 && mes == 8) || (dia <= 23 && mes == 9))
+        return "Virgo";
+
+    if ((dia >= 20 && mes == 2) || (dia <= 20 && mes == 3))
+        return "Piscis";
+
+    return "";
+}
+
+}

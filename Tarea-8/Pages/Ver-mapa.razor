@@ -1,0 +1,45 @@
+@page "/ver_mapa"
+@using Tarea_8.Modelos
+@using System.Linq
+
+<div class="container">
+    <h1 style="text-align: center; color: white; height: 65px" class="mt-2 col-md-12 mb-1 pt-2">Mostrar mapa de vacunados</h1>
+</div>
+
+<RadzenGoogleMap Style="height: 600px;" Zoom="@zoom" Center="@(new GoogleMapPosition() { Lat = 18.735693, Lng = -70.162651})" MapClick="@OnMapClick" MarkerClick="OnMarkerClick">
+    <Markers>
+        @foreach (var vacu in GetVacunados())
+        {
+            <RadzenGoogleMapMarker Title="@vacu.nombre" Position="@(new GoogleMapPosition() { Lat = Convert.ToDouble(vacu.lat), Lng = Convert.ToDouble(vacu.lon)})" />
+        }
+    </Markers>
+</RadzenGoogleMap>
+
+@code{ 
+
+    int zoom = 3;
+    string click = "";
+
+    void OnMapClick(GoogleMapClickEventArgs args) {
+
+        click = $"Map click lat: {args.Position.Lat} Lon: {args.Position.Lng}";
+    }
+
+    void OnMarkerClick(RadzenGoogleMapMarker args) {
+
+        click = $"Map click provincia: {args.Title} lat: {args.Position.Lat} Lon: {args.Position.Lng}";
+    }
+
+    List<DataConsultaVacunados> GetVacunados() =>
+    (
+        from p in new Contexto().Vacunadas
+            //group p by p.signo_zodiaco into g
+        select new DataConsultaVacunados
+        {
+            nombre = p.Nombre,
+            lat = p.Lat,
+            lon = p.Lon
+        }
+    ).ToList();
+
+}

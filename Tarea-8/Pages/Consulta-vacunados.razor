@@ -1,0 +1,47 @@
+@page "/consulta_vacunados"
+@using Tarea_8.Modelos;
+
+<h1 style=" text-align: center; color: white; height: 65px" class="mt-2 col-md-12 mb-1 pt-2">Lista de personas vacunadas</h1>
+
+<div class="container">
+    <br> <br>
+
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>C�dula</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Tel�fono</th>
+                <th>Vacuna recibida</th>
+                <th>Provincia</th>
+                <th>Primera dosis</th>
+                <th>Segunda dosis</th>
+                <th>Signo zodiaco</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Vacunados vacu in GetVacunados())
+            {
+                <tr>
+                    <td>@vacu.Id</td>
+                    <td>@vacu.Cedula</td>
+                    <td>@vacu.Nombre</td>
+                    <td>@vacu.Apellido</td>
+                    <td>@vacu.Telefono</td>
+                    <td>@vacu.Vacuna_recibida</td>
+                    <td>@vacu.Provincia</td>
+                    <td>@vacu.Fecha_Dosis1</td>
+                    <td>@vacu.Fecha_Dosis2</td>
+                    <td>@vacu.signo_zodiaco</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+</div>
+@code{
+    List<Vacunados> GetVacunados() => new Contexto().Vacunadas.ToList();
+}

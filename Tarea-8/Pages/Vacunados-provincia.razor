@@ -1,0 +1,41 @@
+@page "/vacunados_provincia"
+
+<h1 style=" text-align: center; color: white; height: 65px">Vacunados por provincia</h1>
+
+<br />
+<br />
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Provincia</th>
+            <th>Personas vacunadas</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var pro in GetProvincias())
+        {
+            <tr>
+                <td>@pro.Provincia</td>
+                <td>@pro.Cantidad</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code{
+    Contexto context = new Contexto();
+
+    List<DataConsultaProvincia> GetProvincias() =>
+    (
+        from p in context.Vacunadas
+        join pro in context.Provincias
+        on p.Provincia equals pro.id
+        group pro by pro.Provincia into g
+        select new DataConsultaProvincia
+        {
+            Provincia = g.Key,
+            Cantidad = g.Count()
+        }
+    ).ToList();
+}

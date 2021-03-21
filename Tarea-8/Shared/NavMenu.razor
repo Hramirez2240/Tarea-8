@@ -1,0 +1,73 @@
+﻿<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">Tarea 8</a>
+    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true" style="margin-left: 5px;"></span> Inicio
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="registrar_vacuna" Match="NavLinkMatch.All">
+                <img src="./img/user.png" alt="Alternate Text" width="30" height="30" style="margin-right: 10px;" /> Registrar vacuna
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="consulta_vacunados" Match="NavLinkMatch.All">
+                <img src="./img/personas.png" alt="Alternate Text" width="30" height="30" style="margin-right: 10px;" /> Consultar vacunados
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="vacunados_zodiaco" Match="NavLinkMatch.All">
+                <img src="./img/zodiaco.png" alt="Alternate Text" width="30" height="30" style="margin-right: 10px;" /> Zodiaco
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="vacunados_provincia" Match="NavLinkMatch.All">
+                <img src="./img/placeholder.png" alt="Alternate Text" width="30" height="30" style="margin-right: 10px;" /> Vacunados provincia
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="ver_mapa" Match="NavLinkMatch.All">
+                <img src="./img/placeholder.png" alt="Alternate Text" width="30" height="30" style="margin-right: 10px;" /> Mapa vacunados
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="" @onclick="()=>expandedSubMenu= !expandedSubMenu" Match="NavLinkMatch.All">
+                <span class="oi oi-cog" aria-hidden="true" style="margin-left: 5px;"></span> Configuración
+            </NavLink>
+            @if (expandedSubMenu)
+            {
+                <ul class="nav flex-column">
+                    <li class="nav-item px-3">
+                        <NavLink class="nav-link" href="configuracion" Match="NavLinkMatch.All">
+                            <img src="./img/provincia.png" alt="Alternate Text" width="30" height="30" style="margin-right: 10px;" />Provincias
+                        </NavLink>
+                    </li>
+                    <li class="nav-item px-3">
+                        <NavLink class="nav-link" href="Inventario-Vacuna" Match="NavLinkMatch.All">
+                            <img src="./img/vaccine.png" alt="Alternate Text" width="30" height="30" style="margin-right: 10px;" /> Vacunas
+                        </NavLink>
+                    </li>
+                </ul>
+            }
+        </li>
+    </ul>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+    private bool expandedSubMenu;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}
