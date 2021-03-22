@@ -13,84 +13,84 @@ namespace Tarea_8.Pages
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Components;
 #nullable restore
-#line 1 "C:\2021\Tarea-8\Tarea-8\_Imports.razor"
+#line 1 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\_Imports.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\2021\Tarea-8\Tarea-8\_Imports.razor"
+#line 2 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\2021\Tarea-8\Tarea-8\_Imports.razor"
+#line 3 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\2021\Tarea-8\Tarea-8\_Imports.razor"
+#line 4 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\2021\Tarea-8\Tarea-8\_Imports.razor"
+#line 5 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\2021\Tarea-8\Tarea-8\_Imports.razor"
+#line 6 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\2021\Tarea-8\Tarea-8\_Imports.razor"
+#line 7 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\2021\Tarea-8\Tarea-8\_Imports.razor"
+#line 8 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\_Imports.razor"
 using Tarea_8;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\2021\Tarea-8\Tarea-8\_Imports.razor"
+#line 9 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\_Imports.razor"
 using Tarea_8.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\2021\Tarea-8\Tarea-8\_Imports.razor"
+#line 10 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\_Imports.razor"
 using Radzen;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\2021\Tarea-8\Tarea-8\_Imports.razor"
+#line 11 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\_Imports.razor"
 using Radzen.Blazor;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\2021\Tarea-8\Tarea-8\Pages\Consulta-vacunados.razor"
+#line 2 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\Pages\Consulta-vacunados.razor"
 using Tarea_8.Modelos;
 
 #line default
@@ -105,7 +105,7 @@ using Tarea_8.Modelos;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 133 "C:\2021\Tarea-8\Tarea-8\Pages\Consulta-vacunados.razor"
+#line 135 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\Pages\Consulta-vacunados.razor"
       
     string filtroText =string.Empty;
     List<Vacunados> GetVacunados() => new Contexto().Vacunadas.ToList();

@@ -10,105 +10,105 @@ namespace Tarea_8.Pages
     using System;
     using System.Threading.Tasks;
 #nullable restore
-#line 2 "C:\2021\Tarea-8\Tarea-8\_Imports.razor"
+#line 2 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\_Imports.razor"
 using Microsoft.AspNetCore.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\2021\Tarea-8\Tarea-8\_Imports.razor"
+#line 3 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\_Imports.razor"
 using Microsoft.AspNetCore.Components.Authorization;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 4 "C:\2021\Tarea-8\Tarea-8\_Imports.razor"
+#line 4 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\_Imports.razor"
 using Microsoft.AspNetCore.Components.Forms;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\2021\Tarea-8\Tarea-8\_Imports.razor"
+#line 5 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\_Imports.razor"
 using Microsoft.AspNetCore.Components.Routing;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\2021\Tarea-8\Tarea-8\_Imports.razor"
+#line 6 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\_Imports.razor"
 using Microsoft.AspNetCore.Components.Web;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\2021\Tarea-8\Tarea-8\_Imports.razor"
+#line 7 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\_Imports.razor"
 using Microsoft.JSInterop;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 8 "C:\2021\Tarea-8\Tarea-8\_Imports.razor"
+#line 8 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\_Imports.razor"
 using Tarea_8;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 9 "C:\2021\Tarea-8\Tarea-8\_Imports.razor"
+#line 9 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\_Imports.razor"
 using Tarea_8.Shared;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 10 "C:\2021\Tarea-8\Tarea-8\_Imports.razor"
+#line 10 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\_Imports.razor"
 using Radzen;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 11 "C:\2021\Tarea-8\Tarea-8\_Imports.razor"
+#line 11 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\_Imports.razor"
 using Radzen.Blazor;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 2 "C:\2021\Tarea-8\Tarea-8\Pages\Registrar-vacuna.razor"
+#line 2 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\Pages\Registrar-vacuna.razor"
 using System.Net.Http;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 3 "C:\2021\Tarea-8\Tarea-8\Pages\Registrar-vacuna.razor"
+#line 3 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\Pages\Registrar-vacuna.razor"
 using Microsoft.AspNetCore.Components;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 5 "C:\2021\Tarea-8\Tarea-8\Pages\Registrar-vacuna.razor"
+#line 5 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\Pages\Registrar-vacuna.razor"
 using System.Collections.Generic;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 6 "C:\2021\Tarea-8\Tarea-8\Pages\Registrar-vacuna.razor"
+#line 6 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\Pages\Registrar-vacuna.razor"
 using Tarea_8.Modelos;
 
 #line default
 #line hidden
 #nullable disable
 #nullable restore
-#line 7 "C:\2021\Tarea-8\Tarea-8\Pages\Registrar-vacuna.razor"
+#line 7 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\Pages\Registrar-vacuna.razor"
 using System.Linq;
 
 #line default
@@ -123,7 +123,7 @@ using System.Linq;
         }
         #pragma warning restore 1998
 #nullable restore
-#line 123 "C:\2021\Tarea-8\Tarea-8\Pages\Registrar-vacuna.razor"
+#line 121 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\Pages\Registrar-vacuna.razor"
                                                                               
     string cedula = "", nombre = "", apellido = "", telefono = "", fecha_nacimiento = "", signo_zodiaco = "", primeradosis = "", idvacuna = "", idprovincia = "", lat = "", lon = "";
 
@@ -133,7 +133,7 @@ using System.Linq;
 #line hidden
 #nullable disable
 #nullable restore
-#line 126 "C:\2021\Tarea-8\Tarea-8\Pages\Registrar-vacuna.razor"
+#line 124 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\Pages\Registrar-vacuna.razor"
                                    
     string nombre_registrado = "", apellido_registrado = "", telefono_registrado = "", fecha_nacimiento_registrado = "", signo_zodiaco_registrado = "", primeradosis_registrado = "", idvacuna_registrado = "", idprovincia_registrado = "", lat_registrado = "", lon_registrado = "", segundadosis = "";
 
@@ -148,7 +148,7 @@ using System.Linq;
 #line hidden
 #nullable disable
 #nullable restore
-#line 134 "C:\2021\Tarea-8\Tarea-8\Pages\Registrar-vacuna.razor"
+#line 132 "C:\Users\User\Desktop\Programacion 3\Tarea-8\Tarea-8\Pages\Registrar-vacuna.razor"
                                                           
 Data.DatosCedula padron = new Data.DatosCedula();
 public List<inventario> GetInventarios() => new Contexto().Inventarios.ToList();

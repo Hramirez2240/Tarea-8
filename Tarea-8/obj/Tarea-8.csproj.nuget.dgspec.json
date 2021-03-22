@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\2021\\Tarea-8\\Tarea-8\\Tarea-8.csproj": {}
+    "C:\\Users\\User\\Desktop\\Programacion 3\\Tarea-8\\Tarea-8\\Tarea-8.csproj": {}
   },
   "projects": {
-    "C:\\2021\\Tarea-8\\Tarea-8\\Tarea-8.csproj": {
+    "C:\\Users\\User\\Desktop\\Programacion 3\\Tarea-8\\Tarea-8\\Tarea-8.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\2021\\Tarea-8\\Tarea-8\\Tarea-8.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Desktop\\Programacion 3\\Tarea-8\\Tarea-8\\Tarea-8.csproj",
         "projectName": "Tarea-8",
-        "projectPath": "C:\\2021\\Tarea-8\\Tarea-8\\Tarea-8.csproj",
-        "packagesPath": "C:\\Users\\Andriel Castillo\\.nuget\\packages\\",
-        "outputPath": "C:\\2021\\Tarea-8\\Tarea-8\\obj\\",
+        "projectPath": "C:\\Users\\User\\Desktop\\Programacion 3\\Tarea-8\\Tarea-8\\Tarea-8.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\User\\Desktop\\Programacion 3\\Tarea-8\\Tarea-8\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Andriel Castillo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -99,7 +99,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.200\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
